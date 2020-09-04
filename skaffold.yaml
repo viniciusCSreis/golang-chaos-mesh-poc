@@ -1,0 +1,27 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+build:
+  artifacts:
+    - image: author-manager
+      context: .
+      docker:
+        dockerfile: docker/author-manager.Dockerfile
+    - image: book-manager
+      context: .
+      docker:
+        dockerfile: docker/book-manager.Dockerfile
+deploy:
+  kubectl:
+    manifests:
+      - manifests/*.yaml
+    flags:
+      disableValidation: false
+portForward:
+  - resourceType: Deployment
+    resourceName: author-manager
+    port: 3000
+    localPort: 3000
+  - resourceType: Deployment
+    resourceName: book-manager
+    port: 3001
+    localPort: 3000

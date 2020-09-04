@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: author-manager
+spec:
+  selector:
+    matchLabels:
+      app: author-manager
+  template:
+    metadata:
+      labels:
+        app: author-manager
+    spec:
+      containers:
+        - name: author-manager
+          image: author-manager
+      terminationGracePeriodSeconds: 30

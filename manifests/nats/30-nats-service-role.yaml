@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nats-author-manager
+  namespace: default
+---
+apiVersion: nats.io/v1alpha2
+kind: NatsServiceRole
+metadata:
+  name: nats-author-manager
+  namespace: default
+  labels:
+    nats_cluster: example-nats-cluster
+spec:
+  permissions:
+    publish: ["build_book", "_INBOX.>"]
+    subscribe: ["_INBOX.>"]
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nats-book-manager
+  namespace: default
+---
+apiVersion: nats.io/v1alpha2
+kind: NatsServiceRole
+metadata:
+  name: nats-book-manager
+  namespace: default
+  labels:
+    nats_cluster: example-nats-cluster
+spec:
+  permissions:
+    publish: ["_INBOX.>"]
+    subscribe: ["build_book","_INBOX.>"]

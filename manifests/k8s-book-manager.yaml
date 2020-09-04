@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-manager
+spec:
+  selector:
+    matchLabels:
+      app: book-manager
+  template:
+    metadata:
+      labels:
+        app: book-manager
+    spec:
+      containers:
+        - name: book-manager
+          image: book-manager
+      terminationGracePeriodSeconds: 30
