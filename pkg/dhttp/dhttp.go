@@ -10,3 +10,5 @@ type HttpHandler interface {
 }
 
 type HttpHandlerB func(http.ResponseWriter, *http.Request, httprouter.Params)
+
+const AcceptHeader = "Accept"

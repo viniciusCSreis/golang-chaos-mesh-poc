@@ -1,0 +1,16 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name:  pod-fail-github-books-example
+  namespace: chaos-testing
+spec:
+  action: partition
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      "app": "book-manager"
+  direction: to
+  externalTargets:
+    - "api.github.com"

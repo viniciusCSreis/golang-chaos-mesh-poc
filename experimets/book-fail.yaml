@@ -1,0 +1,13 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  name: pod-kill-books-example
+  namespace: default
+spec:
+  action: pod-failure
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      "app": "book-manager"
