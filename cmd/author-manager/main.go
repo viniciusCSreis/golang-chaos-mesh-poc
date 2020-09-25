@@ -39,10 +39,16 @@ func main() {
 	router := httprouter.New()
 	router.GET("/authors", authorListerHTTP.Handler())
 	router.POST("/authors", authorCreatorHTTP.Handler())
+	router.GET("/health", healthHandler)
 
 	log.Info().Msg("Hello from author manager")
 
 	log.Info().Msg("Server: Running")
 	log.Fatal().Err(http.ListenAndServe(":3000", router)).Msg("failed to start server!")
 
+}
+
+func healthHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
+	w.WriteHeader(http.StatusOK)
+	_, _ = w.Write([]byte("OK"))
 }
