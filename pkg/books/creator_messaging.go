@@ -20,7 +20,7 @@ func (h CreatorMessaging) Handler() {
 			log.Error().Err(err).Msg("Fail to get last tag")
 		}
 
-		log.Info().Msgf("Book:%v\n", lastTag)
+		log.Info().Msgf("Last tag:%v\n", lastTag)
 		log.Info().Msgf("Msg %v", m)
 	}, func(err error) {
 		log.Error().Err(err)
