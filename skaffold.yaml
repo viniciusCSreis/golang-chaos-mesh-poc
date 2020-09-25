@@ -25,3 +25,8 @@ portForward:
     resourceName: book-manager
     port: 3000
     localPort: 3001
+  - resourceType: Service
+    resourceName: chaos-dashboard
+    port: 2333
+    localPort: 2333
+    namespace: chaos-testing

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: book-manager
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: book-manager
@@ -21,17 +21,17 @@ spec:
               path: /health
               port: 3000
               scheme: HTTP
-            initialDelaySeconds: 10
+            initialDelaySeconds: 1
             periodSeconds: 5
             successThreshold: 1
             timeoutSeconds: 1
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /health/readiness
+              path: /health
               port: 3000
               scheme: HTTP
-            initialDelaySeconds: 10
+            initialDelaySeconds: 1
             periodSeconds: 5
             successThreshold: 1
             timeoutSeconds: 1

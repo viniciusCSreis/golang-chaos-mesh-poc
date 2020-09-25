@@ -1,7 +1,7 @@
 apiVersion: chaos-mesh.org/v1alpha1
 kind: PodChaos
 metadata:
-  name: pod-kill-books-example
+  name: pod-failure-books-example
   namespace: default
 spec:
   action: pod-failure

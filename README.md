@@ -35,7 +35,7 @@ wait nats cluster to be running.
 List authors is fast: `curl localhost:3000/authors`
 
 Create authors is slow and return error
-even when book service receive the msg: `curl -X POST localhost:3000/authors`
+even when book service receive the msg: `curl -i -X POST localhost:3000/authors`
 
 # Delete experiments
 
@@ -43,7 +43,7 @@ even when book service receive the msg: `curl -X POST localhost:3000/authors`
     kubectl delete -f experimets/delay-nats.yaml
 ```
 
-now create is fast `curl -X POST localhost:3000/authors`
+now create is fast `curl -i -X POST localhost:3000/authors`
 
 
 # Delete cluster

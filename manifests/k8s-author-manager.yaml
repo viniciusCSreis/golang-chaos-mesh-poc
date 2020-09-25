@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: author-manager
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: author-manager
@@ -28,7 +28,7 @@ spec:
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /health/readiness
+              path: /health
               port: 3000
               scheme: HTTP
             initialDelaySeconds: 1
