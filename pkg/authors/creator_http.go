@@ -7,7 +7,7 @@ import (
 	"github.com/rs/zerolog/log"
 	"net/http"
 	"plataform/pkg/api"
-	"plataform/pkg/dhttp"
+	httpUtil "plataform/pkg/http"
 	"plataform/pkg/provider/messaging"
 )
 
@@ -22,8 +22,9 @@ func (h creatorHTTP) Handler() httprouter.Handle {
 
 		b, err := json.Marshal(&resp)
 		if err != nil {
-			log.Error().Err(err)
+			log.Error().Err(err).Msg("")
 			writer.WriteHeader(http.StatusInternalServerError)
+			return
 		}
 
 		msg := messaging.Message{
@@ -32,7 +33,7 @@ func (h creatorHTTP) Handler() httprouter.Handle {
 
 		err = h.m.PublishSync(api.DefaultOrganization, messaging.SubjectBuildBooK, msg)
 		if err != nil {
-			log.Error().Err(err)
+			log.Error().Err(err).Msg("")
 			writer.WriteHeader(http.StatusInternalServerError)
 			return
 		}
@@ -41,6 +42,6 @@ func (h creatorHTTP) Handler() httprouter.Handle {
 	}
 }
 
-func NewCreatorHTTP(msg messaging.PublisherSync) dhttp.HttpHandler {
+func NewCreatorHTTP(msg messaging.PublisherSync) httpUtil.Handler {
 	return creatorHTTP{msg}
 }

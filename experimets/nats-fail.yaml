@@ -1,7 +1,7 @@
 apiVersion: chaos-mesh.org/v1alpha1
 kind: PodChaos
 metadata:
-  name: pod-failure-nats-example
+  name: pod-failure-nats
   namespace: default
 spec:
   action: pod-failure

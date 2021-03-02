@@ -7,11 +7,8 @@ import (
 	"os"
 	"plataform/pkg/api"
 	"plataform/pkg/books"
-	"plataform/pkg/git"
-	"plataform/pkg/git/github"
 	"plataform/pkg/provider"
 	"plataform/pkg/provider/messaging"
-	"time"
 )
 
 var (
@@ -36,14 +33,8 @@ func main() {
 	}
 	natsMessaging := messaging.NewMessenger(nats, appName.String())
 
-	//Github
-	githubRepo := github.NewRepoManager(&http.Client{Timeout: time.Second * 2})
-
-	repoProviders := git.RepoProviders{}
-	repoProviders.Add(git.GitHub, git.Git{Repos: githubRepo, NewRepoInfo: github.NewRepoInfo})
-
 	bookListerHTTP := books.NewListerHTTP()
-	bookCreatorMessaging := books.NewCreatorMessaging(natsMessaging, repoProviders)
+	bookCreatorMessaging := books.NewCreatorMessaging(natsMessaging)
 
 	bookCreatorMessaging.Handler()
 

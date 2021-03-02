@@ -6,7 +6,7 @@ type (
 	}
 
 	AppConfigs struct {
-		NatsConfig                NatsConfig  `json:"nats"`
+		NatsConfig NatsConfig `json:"nats"`
 	}
 
 	NatsConfig struct {

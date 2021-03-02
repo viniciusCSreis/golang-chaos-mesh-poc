@@ -2,14 +2,12 @@
 
 Test project with skaffold,kind,chaos mech and nats
 
-# Install skaffold
+# Prerequisites
 
-[install skaffold](https://skaffold.dev/docs/install/)
-
-# Install Kind
-
-[Install Kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
-
+- Docker
+- Kubectl
+- skaffold [install skaffold](https://skaffold.dev/docs/install/)
+- Kind [Install Kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
 
 # Config Cluster
 
@@ -34,8 +32,13 @@ wait nats cluster to be running.
 
 List authors is fast: `curl localhost:3000/authors`
 
-Create authors is slow and return error
-even when book service receive the msg: `curl -i -X POST localhost:3000/authors`
+Create authors is slow and 
+return timeout error: `curl -i -X POST localhost:3000/authors`
+
+# List running experiments
+
+To list experiments you can access the chaos mesh ui:
+ <http://localhost:2333>
 
 # Delete experiments
 

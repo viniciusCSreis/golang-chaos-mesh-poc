@@ -68,12 +68,14 @@ func (n natsMessenger) Publish(org api.Organization, s Subject, m Message, he Er
 			he(err)
 			return
 		}
+		st := time.Now()
 		_, err = n.nc.Request(string(s), mBase64, 5*time.Second)
+		log.Debug().Msgf("Nats Request executed with: %f s", time.Since(st).Seconds())
 		if err != nil {
 			if err := n.nc.LastError(); err != nil {
-				log.Err(err).Msg("Last Request err")
+				log.Err(err).Msgf("Last Request err:%s", err.Error())
 			}
-			log.Err(err).Msg("Fail Request make a request.")
+			log.Err(err).Msg("Fail to do nats request.")
 			he(err)
 
 			return

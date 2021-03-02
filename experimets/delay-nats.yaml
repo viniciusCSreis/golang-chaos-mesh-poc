@@ -1,7 +1,7 @@
 apiVersion: chaos-mesh.org/v1alpha1
 kind: NetworkChaos
 metadata:
-  name: network-netem-example
+  name: delay-nats
   namespace: default
 spec:
   action: netem
@@ -10,8 +10,8 @@ spec:
     labelSelectors:
       "app": "author-manager"
   delay:
-    latency: "3000ms"
-  direction: both
+    latency: "6000ms"
+  direction: from
   target:
     selector:
       labelSelectors:

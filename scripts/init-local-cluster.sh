@@ -22,7 +22,7 @@ kubectl apply -f manifests/nats/10-deployment.yaml
 
 NATS_OPERATOR_STATUS="wait"
 while [  "$NATS_OPERATOR_STATUS" == 'wait'  ]; do
-  echo "waiting NATS_OPERATOR_STATUS"
+  echo "waiting NATS_OPERATOR_STATUS [expected time 60s]"
   kubectl get NatsCluster 2> /dev/null && NATS_OPERATOR_STATUS="done"
   sleep 1
 done

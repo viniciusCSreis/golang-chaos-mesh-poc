@@ -2,10 +2,9 @@ package authors
 
 import (
 	"encoding/json"
-	"github.com/google/uuid"
 	"github.com/julienschmidt/httprouter"
 	"net/http"
-	"plataform/pkg/dhttp"
+	httpUtil "plataform/pkg/http"
 )
 
 type listerHTTP string
@@ -14,17 +13,18 @@ type listerHTTP string
 func (h listerHTTP) Handler() httprouter.Handle {
 	return func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 
-		resp := Response{Id: uuid.New().String()}
+		resp := Response{Id: "1"}
 
 		b, err := json.Marshal(&resp)
 		if err != nil {
 			writer.WriteHeader(http.StatusInternalServerError)
+			return
 		}
 
 		_, _ = writer.Write(b)
 	}
 }
 
-func NewListerHTTP() dhttp.HttpHandler {
+func NewListerHTTP() httpUtil.Handler {
 	return listerHTTP("")
 }
